@@ -1,5 +1,7 @@
 package com.example;
 
+import java.util.List;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.springframework.data.annotation.Id;
@@ -14,8 +16,8 @@ public class Customer  {
     private String firstName;
     private String lastName;
 
-    /*@DBRef
-    private Account account;*/
+    @DBRef
+    private List<Account> accounts;
     
     public Customer() {}
 
@@ -40,7 +42,7 @@ public class Customer  {
 		this.lastName = lastName;
 	}
 
-/*	public Account getAccount() {
+	/*public Account getAccount() {
 		return account;
 	}
 
@@ -52,6 +54,14 @@ public class Customer  {
 	public String toString() {
 
 		return ToStringBuilder.reflectionToString( this, ToStringStyle.MULTI_LINE_STYLE );
+	}
+
+	public List<Account> getAccounts() {
+		return accounts;
+	}
+
+	public void setAccounts(List<Account> accounts) {
+		this.accounts = accounts;
 	}
 	
    

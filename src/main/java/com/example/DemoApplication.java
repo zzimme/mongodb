@@ -1,4 +1,7 @@
 package com.example;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -35,30 +38,40 @@ public class DemoApplication implements CommandLineRunner {
 		ac.setId(ObjectId.get());
 		arepo.save(ac);
 		
+		Account ac2 = new Account();
+		ac2.setTotal(1200);
+		ac2.setId(ObjectId.get());
+		arepo.save(ac2);
+		
 		Customer a  = new Customer("Alice", "Smith");
 		//a.setAccount(ac);
-		
+		List<Account> list  = new ArrayList<>();
+		list.add(ac);
+		//list.add(ac2);
+		a.setAccounts(list);
 		repository.save(a);
+		list.add(ac2);
+		a.setAccounts(list);
 		//repository.save(new Customer("Bob", "Smith"));
-		CustomerNAccount cna = new CustomerNAccount();
+		/*CustomerNAccount cna = new CustomerNAccount();
 		cna.setAccount(ac);
 		cna.setCustomer(a);
 		
 		cnarepo.save(cna);
-		
-		System.out.println("Customers found with findAll():");
+		*/
+		/*System.out.println("Customers found with findAll():");
 		System.out.println("-------------------------------");
 		for (CustomerNAccount customer : cnarepo.findAll()) {
 			System.out.println(customer);
 		}
-		System.out.println();
+		System.out.println();*/
 		// fetch all customers
-		/*System.out.println("Customers found with findAll():");
+		System.out.println("Customers found with findAll():");
 		System.out.println("-------------------------------");
 		for (Customer customer : repository.findAll()) {
 			System.out.println(customer);
 		}
-		System.out.println();*/
+		System.out.println();
 
 		// fetch an individual customer
 		/*System.out.println("Customer found with findByFirstName('Alice'):");
