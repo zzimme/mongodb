@@ -20,8 +20,8 @@ public class Customer  {
     private String firstName;
     private String lastName;
 
-    @DBRef
-    private List<Account> accounts;
+   /* @DBRef
+    private List<Account> accounts;*/
     
     public Customer() {}
 
@@ -68,13 +68,13 @@ public class Customer  {
 		this.id = id;
 	}
 
-	public List<Account> getAccounts() {
+/*	public List<Account> getAccounts() {
 		return accounts;
 	}
 
 	public void setAccounts(List<Account> accounts) {
 		this.accounts = accounts;
 	}
-	
+	*/
    
 }

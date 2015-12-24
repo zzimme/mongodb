@@ -1,4 +1,8 @@
 package com.example;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -6,11 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
-import com.example.relatedocument.Comment;
 import com.example.relatedocument.CommentRepository;
-import com.example.relatedocument.Emoticon;
 import com.example.relatedocument.EmoticonRepository;
-import com.example.relatedocument.Post;
 import com.example.relatedocument.PostRepository;
 
 
@@ -49,7 +50,7 @@ public class DemoApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		emoticonRepository.deleteAll();
+		/*emoticonRepository.deleteAll();
 		commentRepository.deleteAll();
 		postRepository.deleteAll();
 		
@@ -77,15 +78,15 @@ public class DemoApplication implements CommandLineRunner {
 		for (Post cc : postRepository.findAll() ) {
 			System.out.println(cc);
 		}
-		System.out.println();
+		System.out.println();*/
 		
 		/*repository.deleteAll();
 		accountrepo.deleteAll();
-		relationrepo.deleteAll();*/
+		relationrepo.deleteAll();
 		
 		// save a couple of customers
 		
-		/*Account account = new Account();
+		Account account = new Account();
 		account.setTotal(200);
 		//account.setId(ObjectId.get());
 		accountrepo.save(account);
@@ -104,28 +105,37 @@ public class DemoApplication implements CommandLineRunner {
 		list.add(account_second);
 		//list.add(ac2);
 		customer.setAccounts(list);
-		repository.save(customer);*/
+		repository.save(customer);
 		//list.add(ac2);
 		//a.setAccounts(list);
 		//repository.save(new Customer("Bob", "Smith"));
-	/*	CustomerNAccount cna = new CustomerNAccount();
+		CustomerNAccount cna = new CustomerNAccount();
 		cna.setAccount(account);
 		cna.setCustomer(customer);
-		*/
 		
-		//relationrepo.save(cna);
+		
+		relationrepo.save(cna);
+		
+		CustomerNAccount cna2 = new CustomerNAccount();
+		cna2.setAccount(account_second);
+		cna2.setCustomer(customer);
+		
+		
+		relationrepo.save(cna2);*/
+		
 		/*List<ObjectId> a = new ArrayList();
 		a.add(new ObjectId("5678f6a5d4c68d534a6027e4"));
 		a.add(new ObjectId("5678f6aed4c622b835cdc3e3"));
 		*/
-		/*System.out.println("Customers found with findAll():");
+		Customer customer = repository.findOne("567b901ed4c647325a96cc17");
+		System.out.println("Customers found with findAll():");
 		System.out.println("-------------------------------");
-		for (CustomerNAccount list : relationrepo.findByCustomerIdAndCustomerFirstName("5678f6a5d4c68d534a6027e5","Alice") ) {
+		for (CustomerNAccount list : relationrepo.findDistinctAccountByCustomer(customer) ) {
 			System.out.println(list);
 		}
 		System.out.println();
 		
-		*/
+		
 		
 	/*	Customer cna = Alias.alias(Customer.class);
 		
