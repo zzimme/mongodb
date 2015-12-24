@@ -6,8 +6,12 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.mysema.query.annotations.QueryEntity;
 
+@QueryEntity
+@Document
 public class Customer  {
 
     @Id
@@ -54,6 +58,14 @@ public class Customer  {
 	public String toString() {
 
 		return ToStringBuilder.reflectionToString( this, ToStringStyle.MULTI_LINE_STYLE );
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public List<Account> getAccounts() {
